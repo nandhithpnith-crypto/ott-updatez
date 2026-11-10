@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OTT Movie Updatez | New OTT releases in India</title>
+<meta name="description" content="Daily OTT release tracker: new movies and series on Netflix, Prime Video, JioHotstar, SonyLIV, ZEE5 and more, sorted by language.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f1f5; --card:#fff; --ink:#1b1b2f; --muted:#6b6b80; --line:#e6e6ee;
+  --accent:#6d4bd8; --accent-soft:#ece7fb; --rank:#e0457b;
+  --radius:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1280px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.45rem;letter-spacing:-.02em}
+.logo i{width:36px;height:36px;border-radius:10px;background:var(--accent);display:grid;place-items:center}
+.logo i:after{content:"";border-left:12px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
+.logo span{color:var(--accent)}
+nav{margin-left:auto;display:flex;align-items:center;gap:22px;font-weight:600;font-size:.95rem}
+nav a{color:var(--muted);padding:4px 0;border-bottom:2px solid transparent}
+nav a.on,nav a:hover{color:var(--ink);border-color:var(--accent)}
+.cta{background:#111;color:#fff;border-radius:8px;padding:8px 14px;font-size:.8rem;font-weight:700}
+.search{flex:0 1 280px;position:relative}
+.search input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:9px 16px;font:inherit;font-size:.9rem}
+.search input:focus{outline:2px solid var(--accent);background:#fff}
+.langs{max-width:1280px;margin:0 auto;padding:0 20px 12px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 16px;font-size:.85rem;font-weight:500;transition:.15s}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+main{max-width:1280px;margin:0 auto;padding:0 20px 60px}
+
+/* intro */
+.intro{margin:18px 0 4px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px}
+.intro h1{font-size:1.25rem;font-weight:800;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.upd{font-size:.72rem;font-weight:600;color:#1c7a45;background:#e3f6ea;border:1px solid #bfe8cd;border-radius:999px;padding:2px 10px}
+.intro p{color:var(--muted);font-size:.9rem;margin-top:6px;max-width:100ch}
+.note{font-size:.78rem;color:var(--muted);margin-top:8px}
+
+/* tabs */
+.tabs{display:flex;justify-content:center;gap:10px;margin:22px 0 6px;flex-wrap:wrap}
+.tab{border-radius:999px;padding:8px 20px;font-weight:700;font-size:.9rem;background:#fff;border:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.tab b{font-size:.72rem;background:var(--bg);border-radius:999px;padding:1px 8px}
+.tab.on{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 6px 16px rgba(109,75,216,.3)}
+.tab.on b{background:rgba(255,255,255,.25)}
+
+/* rows */
+.sec{margin-top:26px}
+.sec h2{font-size:1.05rem;font-weight:800;padding-left:10px;border-left:3px solid var(--accent);margin-bottom:12px;display:flex;gap:8px;align-items:center}
+.row{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x proximity;scrollbar-color:var(--accent) transparent}
+.card{flex:0 0 182px;scroll-snap-align:start;background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);position:relative;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s;cursor:pointer;text-align:left}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(30,20,70,.14)}
+.poster{aspect-ratio:2/3;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;color:#fff;background-size:cover;background-position:center}
+.poster:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(0,0,0,.88),rgba(0,0,0,0) 58%)}
+.poster>*{position:relative;z-index:2}
+.poster>.pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.poster>.ph{position:absolute;left:0;right:0;top:16%;z-index:0;text-align:center;font-size:3.6rem;font-weight:800;letter-spacing:-.03em;color:rgba(255,255,255,.28);text-shadow:0 4px 20px rgba(0,0,0,.25)}
+.poster>.pf{position:absolute;top:8px;left:8px;right:auto;font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:rgba(0,0,0,.45);border-radius:4px;padding:2px 7px;z-index:2}
+.poster .t{font-weight:800;font-size:.95rem;line-height:1.2;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.kind{display:inline-block;margin-top:6px;align-self:flex-start;font-size:.62rem;font-weight:700;letter-spacing:.04em;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:4px;padding:1px 7px}
+.meta{padding:10px 10px 12px;font-size:.76rem;color:var(--muted);display:grid;gap:6px;flex:1}
+.m1{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.date{font-variant-numeric:tabular-nums}
+.plat{font-size:.7rem;font-weight:700;color:#fff;border-radius:4px;padding:2px 8px}
+.rank{position:absolute;left:0;bottom:0;width:30px;height:30px;background:var(--rank);color:#fff;font-weight:800;font-size:1.15rem;display:grid;place-items:center;border-top-right-radius:6px}
+.heart{position:absolute;right:8px;bottom:6px;font-size:1rem;color:#cfcfdc;line-height:1;padding:4px}
+.heart.on{color:#e0457b}
+.empty{padding:40px 10px;text-align:center;color:var(--muted)}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(20,15,40,.55);display:none;place-items:center;z-index:50;padding:16px}
+.modal.open{display:grid}
+.sheet{background:#fff;border-radius:14px;width:min(520px,100%);padding:22px 24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:pop .18s ease-out}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.sheet h3{font-size:1.2rem;font-weight:800;margin-bottom:10px;padding-right:30px}
+.x{position:absolute;top:14px;right:16px;font-size:1.4rem;color:var(--accent);font-weight:700}
+dl{display:grid;grid-template-columns:130px 1fr}
+dt,dd{padding:9px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+dt{color:var(--muted)}
+.tm{display:inline-flex;gap:6px;margin-top:14px;color:var(--accent);font-weight:700}
+.syn{margin-top:12px;font-size:.88rem;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);background:#fff;text-align:center;padding:22px 20px;font-size:.82rem;color:var(--muted)}
+footer a{color:var(--accent);font-weight:600;margin:0 8px}
+
+@media (max-width:700px){
+  .bar{flex-wrap:wrap;gap:10px}
+  nav{margin-left:0;order:3;width:100%;justify-content:space-between}
+  .search{flex:1 1 100%;order:4}
+  .card{flex-basis:150px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="logo" href="#"><i></i>OTT Movie <span>Updatez</span></a>
+    <div class="search"><input id="q" type="search" placeholder="Search movies or series" aria-label="Search"></div>
+    <nav>
+      <a class="on" href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="cta" href="#">Get the app</a>
+    </nav>
+  </div>
+  <div class="langs" id="langs"></div>
+</header>
+
+<main>
+  <section class="intro">
+    <h1>Daily OTT release tracker <span class="upd" id="upd"></span></h1>
+    <p>Release dates and platform details for movies and series on Netflix, Prime Video, JioHotstar, SonyLIV, ZEE5, ManoramaMAX, SunNXT and Apple TV+, listed by language.</p>
+    <p class="note">Information tracker only. We list official OTT release dates and do not stream, host or distribute any content.</p>
+  </section>
+
+  <div class="tabs" id="tabs"></div>
+  <div id="content"></div>
+
+  <section class="intro" id="about" style="margin-top:36px">
+    <h1>About</h1>
+    <p>OTT Movie Updatez helps you find out what released on OTT today, which platform it is on, and in which language. Tap any card for details.</p>
+  </section>
+  <section class="intro" id="contact" style="margin-top:14px">
+    <h1>Contact</h1>
+    <p>Spotted a wrong date or a missing title? Message us on Telegram: <a href="https://t.me/ottupdatez_TG" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">t.me/ottupdatez_TG</a></p>
+  </section>
+</main>
+
+<footer>
+  <a href="#about">About</a><a href="#contact">Contact</a><a href="#">Privacy</a><a href="#">Terms</a>
+  <div style="margin-top:8px">&copy; <span id="yr"></span> OTT Movie Updatez. Posters and titles belong to their owners. Poster images via TMDB; this product uses the TMDB API but is not endorsed or certified by TMDB.</div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+  <div class="sheet">
+    <button class="x" id="close" aria-label="Close">&times;</button>
+    <h3 id="mt"></h3>
+    <dl id="md"></dl>
+    <p class="syn" id="msyn"></p>
+    <a class="tm" id="mlink" target="_blank" rel="noopener">View on TMDB</a>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   EDIT YOUR DATA HERE
+   Each item: title, type ("MOVIE" | "SERIES"), platform, date (YYYY-MM-DD),
+   genre, lang, trending (true/false), poster (optional image URL),
+   rating (optional %), synopsis (optional)
+   ============================================================ */
+const PLATFORMS = {
+  "Netflix":"#e50914","Prime Video":"#00a8e1","JioHotstar":"#1f3fbf","SonyLIV":"#1d2f9b",
+  "ZEE5":"#6a1b9a","ManoramaMAX":"#c2185b","SunNXT":"#e65100","Apple TV+":"#222","Lionsgate Play":"#b8860b"
+};
+const ITEMS = [
+  {title:"I'm Game",type:"MOVIE",platform:"JioHotstar",date:"2026-11-06",genre:"Fantasy, Action, Thriller",lang:"Malayalam",trending:true},
+  {title:"Meesaya Murukku 2",type:"MOVIE",platform:"SonyLIV",date:"2026-11-06",genre:"Musical, Comedy, Drama",lang:"Tamil",trending:true},
+  {title:"Dilwali Diwali",type:"MOVIE",platform:"Netflix",date:"2026-11-05",genre:"Family Drama",lang:"Hindi",trending:true},
+  {title:"Haiwaan",type:"MOVIE",platform:"SonyLIV",date:"2026-11-06",genre:"Crime Thriller",lang:"Hindi",trending:true},
+  {title:"Campus Drivers",type:"MOVIE",platform:"Prime Video",date:"2026-11-06",genre:"Romance, Drama",lang:"English",trending:true},
+  {title:"Overacting",type:"MOVIE",platform:"Netflix",date:"2026-11-05",genre:"Comedy",lang:"English",trending:true},
+  {title:"One Year To Live, Buy A Man",type:"MOVIE",platform:"Netflix",date:"2026-11-05",genre:"Drama",lang:"English",trending:true,rating:80},
+  {title:"Awkwafina: The Unlikely Cook",type:"SERIES",platform:"Apple TV+",date:"2026-11-06",genre:"Documentary, Culinary",lang:"English"},
+  {title:"Yaga",type:"SERIES",platform:"Lionsgate Play",date:"2026-11-06",genre:"Supernatural, Horror",lang:"English",rating:74},
+  {title:"Black Doves (Season 2)",type:"SERIES",platform:"Netflix",date:"2026-11-05",genre:"Spy Thriller",lang:"English"},
+  {title:"The Greatest Showman",type:"SERIES",platform:"Prime Video",date:"2026-11-04",genre:"Drama / Biography",lang:"English",rating:79},
+  {title:"Nocturne",type:"SERIES",platform:"Apple TV+",date:"2026-10-30",genre:"Crime thriller",lang:"English",rating:62},
+  {title:"Karuppu Nila",type:"MOVIE",platform:"SunNXT",date:"2026-11-04",genre:"Drama",lang:"Tamil"},
+  {title:"Kadal Kaatu",type:"MOVIE",platform:"ManoramaMAX",date:"2026-11-03",genre:"Thriller",lang:"Malayalam"},
+  {title:"Thalaivar Returns",type:"MOVIE",platform:"Prime Video",date:"2026-11-02",genre:"Action",lang:"Tamil",rating:71},
+  {title:"Vettaikaran Raja",type:"MOVIE",platform:"ZEE5",date:"2026-11-01",genre:"Action, Drama",lang:"Telugu"},
+  {title:"Raja Saab 2",type:"MOVIE",platform:"Netflix",date:"2026-10-31",genre:"Fantasy, Comedy",lang:"Telugu"},
+  {title:"Mallige Mane",type:"MOVIE",platform:"ZEE5",date:"2026-11-02",genre:"Family Drama",lang:"Kannada"},
+  {title:"Kaanana",type:"SERIES",platform:"Prime Video",date:"2026-11-03",genre:"Mystery",lang:"Kannada"},
+  {title:"Jailer 2",type:"MOVIE",platform:"Prime Video",date:"2026-11-12",genre:"Action, Comedy",lang:"Tamil"},
+  {title:"Daayra",type:"MOVIE",platform:"Netflix",date:"2026-11-13",genre:"Crime Thriller",lang:"Hindi"},
+  {title:"Hanuman Ansh",type:"MOVIE",platform:"SonyLIV",date:"2026-11-27",genre:"Drama",lang:"Hindi"}
+];
+const LANG_ORDER = ["English","Malayalam","Tamil","Telugu","Kannada","Hindi"];
+const UPDATED = "2026-11-10";
+/* Paste your free TMDB API key here to load real posters automatically (see themoviedb.org > Settings > API) */
+const TMDB_KEY = "";
+
+/* ---------- code ---------- */
+const $ = s => document.querySelector(s);
+const content = $("#content"), tabs = $("#tabs"), langsEl = $("#langs"), modal = $("#modal");
+let state = {lang:"All", tab:"all", q:""};
+let favs = new Set();
+try{ favs = new Set(JSON.parse(localStorage.getItem("ottfavs")||"[]")); }catch(e){}
+
+const dayDiff = d => Math.floor((new Date(UPDATED) - new Date(d))/864e5);
+const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function hue(str){ let h=0; for(const c of str) h=(h*31+c.charCodeAt(0))%360; return h; }
+function initials(t){
+  const w=t.replace(/[^A-Za-z0-9\u0080-\uFFFF ]/g,"").split(" ").filter(Boolean);
+  return esc((w.length>1 ? w[0][0]+w[1][0] : (w[0]||"").slice(0,2)).toUpperCase());
+}
+function posterStyle(it){
+  const h=hue(it.title);
+  return `background-image:radial-gradient(circle at 80% 15%,hsl(${(h+40)%360} 80% 62% / .55),transparent 45%),repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 10px,transparent 10px 20px),linear-gradient(160deg,hsl(${h} 60% 40%),hsl(${(h+55)%360} 65% 18%))`;
+}
+function visible(){
+  return ITEMS.filter(it=>{
+    if(state.lang!=="All" && it.lang!==state.lang) return false;
+    if(state.q && !(it.title+" "+it.genre+" "+it.platform).toLowerCase().includes(state.q)) return false;
+    return true;
+  });
+}
+function cardHTML(it,rank){
+  const id = ITEMS.indexOf(it);
+  return `<div class="card" tabindex="0" role="button" data-id="${id}" aria-label="${esc(it.title)} details">
+    <div class="poster" style="${posterStyle(it)}">
+      <span class="ph">${initials(it.title)}</span>${it.poster?`<img class="pimg" src="${esc(it.poster)}" alt="" loading="lazy" onerror="this.remove()">`:""}
+      <span class="pf">${esc(it.platform)}</span>
+      <span class="t">${esc(it.title)}</span><span class="kind">${it.type}</span>
+    </div>
+    <div class="meta">
+      <div class="m1"><span class="plat" style="background:${PLATFORMS[it.platform]||"#555"}">${esc(it.platform)}</span><span class="date">${it.date}</span></div>
+      <div>${esc(it.genre)}</div>
+      ${it.rating?`<div><b style="color:#1c7a45">${it.rating}%</b> audience score</div>`:""}
+      ${dayDiff(it.date)<0?`<div style="color:var(--accent);font-weight:700">Coming in ${-dayDiff(it.date)} day${-dayDiff(it.date)>1?"s":""}</div>`:""}
+    </div>
+    ${rank?`<span class="rank">${rank}</span>`:""}
+    <button class="heart ${favs.has(it.title)?"on":""}" data-fav="${id}" aria-label="Save ${esc(it.title)}">&#9829;</button>
+  </div>`;
+}
+function section(title,list,ranked){
+  if(!list.length) return "";
+  return `<section class="sec"><h2>${title}</h2><div class="row">${list.map((it,i)=>cardHTML(it,ranked?i+1:0)).join("")}</div></section>`;
+}
+function render(){
+  const all = visible();
+  const trending = all.filter(i=>i.trending);
+  const week = all.filter(i=>dayDiff(i.date)>=0 && dayDiff(i.date)<=7);
+  const soon = all.filter(i=>dayDiff(i.date)<0).sort((a,b)=>a.date.localeCompare(b.date));
+  const stream = all.filter(i=>dayDiff(i.date)>=0).sort((a,b)=>b.date.localeCompare(a.date));
+  const favl = all.filter(i=>favs.has(i.title));
+  tabs.innerHTML = [["all","All",all.length],["trend","Trending",trending.length],["stream","Now Streaming",stream.length],["soon","Upcoming",soon.length],["week","This Week",week.length],["fav","Saved",favl.length]]
+    .map(([k,l,n])=>`<button class="tab ${state.tab===k?"on":""}" data-tab="${k}">${l}<b>${n}</b></button>`).join("");
+
+  let html="";
+  if(state.tab==="trend") html = section("&#128293; Trending This Week",trending,true);
+  else if(state.tab==="week") html = section("Released This Week",week.sort((a,b)=>b.date.localeCompare(a.date)),false);
+  else if(state.tab==="stream") html = section("&#9654; Now Streaming",stream,false);
+  else if(state.tab==="soon") html = section("&#128197; Upcoming Releases",soon,false);
+  else if(state.tab==="fav") html = section("&#9829; Saved",favl,false);
+  else{
+    html += section("&#128293; Trending This Week",trending,true);
+    html += section("&#128197; Upcoming Releases",soon,false);
+    html += section("&#9654; Now Streaming",stream,false);
+    LANG_ORDER.forEach(l=>{
+      if(state.lang!=="All" && state.lang!==l) return;
+      html += section(l, stream.filter(i=>i.lang===l),false);
+    });
+  }
+  content.innerHTML = html || `<p class="empty">No titles found. Try another language or clear the search.</p>`;
+}
+function openModal(id){
+  const it = ITEMS[id];
+  $("#mt").textContent = it.title;
+  $("#md").innerHTML = [["Genre",it.genre],["Language",it.lang],["Platform",it.platform],["Type",it.type==="MOVIE"?"Movie":"Series"],["Release Date",it.date]]
+    .map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
+  $("#msyn").textContent = it.synopsis || "";
+  $("#mlink").href = "https://www.themoviedb.org/search?query="+encodeURIComponent(it.title);
+  modal.classList.add("open"); $("#close").focus();
+}
+const closeModal = () => modal.classList.remove("open");
+
+content.addEventListener("click",e=>{
+  const fav = e.target.closest("[data-fav]");
+  if(fav){
+    e.stopPropagation();
+    const t = ITEMS[+fav.dataset.fav].title;
+    favs.has(t)?favs.delete(t):favs.add(t);
+    try{ localStorage.setItem("ottfavs",JSON.stringify([...favs])); }catch(err){}
+    render(); return;
+  }
+  const c = e.target.closest(".card"); if(c) openModal(+c.dataset.id);
+});
+content.addEventListener("keydown",e=>{
+  if((e.key==="Enter"||e.key===" ") && e.target.classList.contains("card")){e.preventDefault();openModal(+e.target.dataset.id);}
+});
+tabs.addEventListener("click",e=>{const b=e.target.closest("[data-tab]"); if(b){state.tab=b.dataset.tab;render();}});
+$("#q").addEventListener("input",e=>{state.q=e.target.value.trim().toLowerCase();render();});
+$("#close").addEventListener("click",closeModal);
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+
+langsEl.innerHTML = ["All",...LANG_ORDER].map(l=>`<button class="chip ${l==="All"?"on":""}" data-l="${l}">${l}</button>`).join("");
+langsEl.addEventListener("click",e=>{
+  const b=e.target.closest("[data-l]"); if(!b) return;
+  state.lang=b.dataset.l;
+  langsEl.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c===b));
+  render();
+});
+$("#upd").textContent = "Updated " + new Date(UPDATED).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+$("#yr").textContent = new Date().getFullYear();
+const PCACHE = (()=>{try{return JSON.parse(localStorage.getItem("ottposters")||"{}")}catch(e){return {}}})();
+ITEMS.forEach(it=>{ const k=it.title+"|"+it.type; if(!it.poster && PCACHE[k]) it.poster=PCACHE[k]; });
+async function loadPosters(){
+  if(!TMDB_KEY) return;
+  let changed=false;
+  await Promise.all(ITEMS.map(async it=>{
+    if(it.poster) return;
+    const key=it.title+"|"+it.type;
+    const clean=it.title.replace(/\s*\(.*?\)\s*/g," ").trim();
+    const first=it.type==="SERIES"?"tv":"movie";
+    for(const kind of [first, first==="tv"?"movie":"tv"]){
+      try{
+        const r=await fetch(`https://api.themoviedb.org/3/search/${kind}?api_key=${encodeURIComponent(TMDB_KEY)}&query=${encodeURIComponent(clean)}`);
+        const j=await r.json();
+        const hit=(j.results||[]).find(x=>x.poster_path);
+        if(hit){ it.poster="https://image.tmdb.org/t/p/w342"+hit.poster_path; PCACHE[key]=it.poster; changed=true; break; }
+      }catch(e){}
+    }
+  }));
+  try{localStorage.setItem("ottposters",JSON.stringify(PCACHE));}catch(e){}
+  if(changed) render();
+}
+render();
+loadPosters();
+</script>
+</body>
+</html>
